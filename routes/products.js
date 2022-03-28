@@ -47,7 +47,7 @@ router.post('/favourite',async(req,res)=>{
 
 })
 
-router.get("/", async (req, res) => 
+router.get("/", async (req, res,next) => 
 {
   let { page, limit } = req.query;
   const size = await Product.count().exec();
