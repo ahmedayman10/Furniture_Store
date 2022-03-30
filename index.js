@@ -32,7 +32,7 @@ app.use((err,req,res,next)=>{
     
 
 
-mongoose.connect('mongodb+srv://Ahmed:ahmed444777@ahmed.oc2k8.mongodb.net/Mean_Project=true&w=majority')
+mongoose.connect('mongodb+srv://Ahmed:ahmed444777@ahmed.oc2k8.mongodb.net/Mean_Project?retryWrites=true&w=majority')
 .then(()=>console.log('connected to mongo'))
 .catch(()=>console.error('failed to connect'));  
 
