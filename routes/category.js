@@ -23,7 +23,7 @@ router.post('/',verifyTokenAndAdmin,multer.single("image"),async(req, res)=>{
     
 });
 
-router.get('/',verifyTokenAndAdmin,async (req, res, next)=>{
+router.get('/',async (req, res, next)=>{
     const category =await Category.find();
     res.send(category);
 });
