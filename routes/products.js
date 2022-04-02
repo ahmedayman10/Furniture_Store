@@ -69,6 +69,14 @@ router.get("/:id", verifyTokenAndAdmin, async (req, res, next) => {
   }
 });
 
+router.get('/category/:id', async(req, res)=>{
+ const categoryId = await Category.findById(req.params.id);
+ if(!categoryId)return res.status(404).json({success:false, message:'not found'})
+
+  const product = await Product.find({category: categoryId});
+  res.status(200).json({products:product});
+});
+
 //get product count
 router.get(`/get/count`, async (req, res) => {
   let productList = await Product.find();
