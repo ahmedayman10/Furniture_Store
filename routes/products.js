@@ -56,7 +56,8 @@ router.get("/", async (req, res,next) =>
   const products = await Product.find().populate('category').limit(limit).skip(skip).exec();
 
   if (size == 0) return next(customeError({ status: 400, message: "Products not found" }))
-  return res.status(200).json({ success: true, products, pages, size });
+  //return res.status(200).json({ success: true, products, pages, size });
+  return res.send(products)
 });
 
 
