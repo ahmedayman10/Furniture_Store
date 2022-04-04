@@ -34,7 +34,6 @@ router.post("/",verifyTokenAndAdmin, multer.single("image"), async (req, res, ne
     await product.save();
     res.send(product)
   } catch (err) {
-    console.log(err);
     res.status(500).send(err);
   }
 });
