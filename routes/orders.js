@@ -55,8 +55,12 @@ router.post('/', async (req,res)=>{
     const totalPrice = totalPrices.reduce((a,b) => a +b , 0);
 
     let order = new Order({
-        orderItems: orderItemsIdsResolved,
-        shippingAddress: req.body.shippingAddress,
+       orderItems: orderItemsIdsResolved,
+        shippingAddress1: req.body.shippingAddress1,
+        shippingAddress2: req.body.shippingAddress2,
+        city:req.body.city,
+        zip:req.body.zip,
+        country:req.body.country,
         phone: req.body.phone,
         status: req.body.status,
         totalPrice: totalPrice,
@@ -67,7 +71,7 @@ router.post('/', async (req,res)=>{
     if(!order)
     return res.status(400).send('the order cannot be created!')
 
-    res.json({order:order});
+    res.send(order);
 })
 
 
@@ -98,7 +102,7 @@ router.patch('/:id',verifyTokenAndAdmin,async(req, res)=>{
         const updatedOrder = await Order.findByIdAndUpdate(req.params.id,{
             $set:req.body
         },{ new: true })
-        res.status(200).json({order: updatedOrder});
+        res.status(200).send(updatedOrder);
     }catch(err){
         res.status(404).send('order is not exists');   
     }
