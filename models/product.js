@@ -1,10 +1,18 @@
 const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({
-    name: {type: String, required: true},
-    description:{type: String, required: true},
-    category: {type: mongoose.Schema.Types.ObjectId,ref:'Category'},
-    price: {type: Number,required:true},
+    name: {
+        type: String, required: true
+    },
+    description:{
+        type: String, required: true
+    },
+    category: {
+        type: mongoose.Schema.Types.ObjectId,ref:'Category'
+    },
+    price: {
+        type: Number,required:true
+    },
     countInStock: {
         type: Number,
         required: true,
@@ -15,10 +23,17 @@ const productSchema = new mongoose.Schema({
         type:Boolean,
         default: false
     },
-    img: {type: String}
+    image: {
+        type: String,
+        required:true
+    },
+    brand:{
+        type:String
+    }
 },
 {timestamps: true}
 );
+
 
 
 //to make virtual id not _id
