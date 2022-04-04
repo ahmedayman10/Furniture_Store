@@ -13,13 +13,15 @@ const {
   } = require("../middlewares/verifyToken");
 
 router.post('/',verifyTokenAndAdmin,multer.single("image"),async(req, res)=>{
-    const result = await cloudinary.uploader.upload(req.file.path);  
+   const result = await cloudinary.uploader.upload(req.file.path);  
     let category = new Category({
-        categoryName: req.body.categoryName,
-        img: result.url
+        name: req.body.name,
+        image: result.url,
+        icon:req.body.icon,
+        color:req.body.color
     })
     category = await category.save();
-    res.status(200).json({category:category});
+    res.status(200).send(category);
     
 });
 
@@ -45,7 +47,7 @@ router.patch('/:id',verifyTokenAndAdmin,async(req, res)=>{
         $set: req.body
     },{new: true});
     if(!updatedCategory)return res.status(404).send('category doesnot exists');
-    res.status(200).json({category: updatedCategory});
+    res.status(200).send(updatedCategory);
 });
 
 router.delete('/:id',verifyTokenAndAdmin,async(req, res)=>{
