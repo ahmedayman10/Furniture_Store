@@ -1,11 +1,14 @@
 const mongoose = require('mongoose');
 
 const categorySchema = new mongoose.Schema({
-    categoryName : {type: String,required:true},
-    img: {type: String}
+    name : {type: String,required:true},
+    image: {type: String, required:true},
+    color: {type: String},
+    icon: {type: String},
 },
 {timestamps: true}
 );
+
 
 const Category = mongoose.model('Category',categorySchema);
 
