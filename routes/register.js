@@ -15,7 +15,7 @@ router.post("/", userValidations ,async (req, res, next) => {
         code: "VALIDATION-ERROR",
       }));
   let user = new User({
-    username: req.body.username,
+     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
     phone: req.body.phone,
@@ -26,7 +26,7 @@ router.post("/", userValidations ,async (req, res, next) => {
   user.password = await bcrypt.hash(user.password, salt);
 
     user = await user.save();
-    res.status(200).json({user:user});
+    res.status(200).send(user);
 
 });
 
