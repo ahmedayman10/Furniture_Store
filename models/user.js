@@ -3,11 +3,41 @@ const jwt = require('jsonwebtoken');
 
 const userSchema = new mongoose.Schema(
     {
-      username: { type: String},
-      email: { type: String, required: true, unique: true },
-      password: { type: String, required: true },
-      phone: {type:Number, required: true},
-      address: {type: String, required: true},
+      name: { 
+        type: String, 
+        required:true
+      },
+      email: { 
+        type: String,
+         required: true, 
+         unique: true 
+        },
+      password: { 
+        type: String, 
+        required: true 
+      },
+      phone: {
+        type:Number,
+         required: true
+        },
+      shippingAddress1: {
+        type: String,
+    },
+    shippingAddress2: {
+        type: String,
+    },
+    city: {
+        type: String,
+ 
+    },
+    zip: {
+        type: String,
+   
+    },
+    country: {
+        type: String,
+       
+    },
       isAdmin: {
         type: Boolean,
         default: false,
@@ -16,7 +46,6 @@ const userSchema = new mongoose.Schema(
         {
           type: mongoose.Schema.Types.ObjectId,
           ref:'Product'
-        
         }]
     },
     { timestamps: true }
