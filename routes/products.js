@@ -28,11 +28,11 @@ router.post("/",verifyTokenAndAdmin, multer.single("image"), async (req, res, ne
       price: req.body.price,
       countInStock: req.body.countInStock,
       isFeatured: req.body.isFeatured,
-      img:result.url
+      image:result.url,
+      brand:req.body.brand
     });
-    //res.json(result);
     await product.save();
-    res.status(200).json({product:product});
+    res.send(product)
   } catch (err) {
     console.log(err);
     res.status(500).send(err);
@@ -43,7 +43,7 @@ router.post('/favourite',async(req,res)=>{
   const {body:{productId, userId}} = req;
   let product = await User.updateOne({_id:userId}, {$push:{favouriteList: productId}});
 
-  res.status(200).json({success: true, message:"Favourite list updated successfully"});
+  res.status(200).send("Favourite list updated successfully");
 
 })
 
@@ -56,7 +56,7 @@ router.get("/", async (req, res,next) =>
   const products = await Product.find().populate('category').limit(limit).skip(skip).exec();
 
   if (size == 0) return next(customeError({ status: 400, message: "Products not found" }))
-  //return res.status(200).json({ success: true, products, pages, size });
+
   return res.send(products)
 });
 
@@ -75,13 +75,13 @@ router.get('/category/:id', async(req, res)=>{
  if(!categoryId)return res.status(404).json({success:false, message:'not found'})
 
   const product = await Product.find({category: categoryId});
-  res.status(200).json({products:product});
+  res.status(200).send(product);
 });
 
 //get product count
 router.get(`/get/count`, async (req, res) => {
   let productList = await Product.find();
-  res.status(200).send({ count: productList.length });
+  res.status(200).send(productList.length);
 });
 
 
@@ -96,7 +96,7 @@ router.patch("/:id", verifyTokenAndAdmin, async (req, res, next) => {
       { new: true }
     );
 
-    res.status(200).json({order: updatedProduct});
+    res.status(200).send(updatedProduct);
   } catch (err) {
     res.status(404).send("product is not exists");
   }
