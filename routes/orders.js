@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const {Order} = require('../models/order');
 const {OrderItem} = require('../models/orderItem');
+const orderValidation = require('../middlewares/validateOrderSchema')();
 
 const {
     verifyToken,
@@ -32,7 +33,7 @@ router.get('/:id',verifyTokenAndAdmin,async(req, res)=>{
 });
 
 //post order
-router.post('/', async (req,res)=>{
+router.post('/', orderValidation,async (req,res)=>{
     
     const orderItemsIds = Promise.all(req.body.orderItems.map(async (orderItem) =>{
         let newOrderItem = new OrderItem({
@@ -55,7 +56,7 @@ router.post('/', async (req,res)=>{
     const totalPrice = totalPrices.reduce((a,b) => a +b , 0);
 
     let order = new Order({
-       orderItems: orderItemsIdsResolved,
+        orderItems: orderItemsIdsResolved,
         shippingAddress1: req.body.shippingAddress1,
         shippingAddress2: req.body.shippingAddress2,
         city:req.body.city,
@@ -71,7 +72,7 @@ router.post('/', async (req,res)=>{
     if(!order)
     return res.status(400).send('the order cannot be created!')
 
-    res.send(order);
+    res.json({order:order});
 })
 
 
@@ -82,9 +83,8 @@ router.get('/get/totalsales',verifyTokenAndAdmin,async(req, res)=>{
         {$group: {_id: null, totalsales:{$sum: '$totalPrice'}}}
     ])
     
-    console.log(totalSales);
     if(!totalSales)return res.status(400).send('the order sales cannot be generated');
-    res.status(200).send({totalsales: totalSales.pop().totalsales});
+    res.status(200).send(totalSales.pop().totalsales);
 });
 
 //get user's orders
@@ -102,6 +102,7 @@ router.patch('/:id',verifyTokenAndAdmin,async(req, res)=>{
         const updatedOrder = await Order.findByIdAndUpdate(req.params.id,{
             $set:req.body
         },{ new: true })
+        // res.status(200).json({order: updatedOrder});
         res.status(200).send(updatedOrder);
     }catch(err){
         res.status(404).send('order is not exists');   
