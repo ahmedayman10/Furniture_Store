@@ -2,7 +2,7 @@ const Joi = require('joi');
 
 
 const schema = Joi.object({
-    username: Joi.string()
+    name: Joi.string()
         .min(3)
         .max(15),
     email: Joi.string()
