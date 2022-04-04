@@ -1,36 +1,51 @@
 const mongoose = require('mongoose');
 
-const orderSchema = new mongoose.Schema({
-    orderItems:[{
+const orderSchema = mongoose.Schema({
+    orderItems: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'OrderItem',
-        required: true
+        required:true
     }],
-    shippingAddress:{
-        type: String
-    },
-    phone:{
-        type: Number,
-        required: true
-    },
-    status:{
+    shippingAddress1: {
         type: String,
         required: true,
-        default: 'pending'
     },
-    totalPrice:{
-        type: Number
+    shippingAddress2: {
+        type: String,
     },
-    user:{
+    city: {
+        type: String,
+        required: true,
+    },
+    zip: {
+        type: String,
+        required: true,
+    },
+    country: {
+        type: String,
+        required: true,
+    },
+    phone: {
+        type: String,
+        required: true,
+    },
+    status: {
+        type: String,
+        required: true,
+        default: 'Pending',
+    },
+    totalPrice: {
+        type: Number,
+    },
+    user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
     },
-    dateOrdered:{
+    dateOrdered: {
         type: Date,
-        default:Date.now
-    }
-});
-
+        default: Date.now,
+    },
+})
 
 const Order = mongoose.model('Order',orderSchema);
 
