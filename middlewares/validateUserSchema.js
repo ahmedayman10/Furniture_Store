@@ -12,7 +12,7 @@ module.exports = function() {
             req.body = validated
             next()
         } catch (err) {
-            console.log(err);
+            console.log(req.body);
             if(err.isJoi) 
                 return next(CustomError({
                     statusCode: 403,
