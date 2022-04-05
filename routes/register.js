@@ -6,7 +6,7 @@ const customError = require("../errorHandling/Custom_error");
 const userValidations = require('../middlewares/validateUserSchema')();
 
 
-router.post("/", userValidations ,async (req, res, next) => {
+router.post("/", async (req, res, next) => {
   const email = await User.findOne({ email: req.body.email });
   if (email)
     return next(customError({
