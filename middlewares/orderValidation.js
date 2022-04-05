@@ -8,7 +8,7 @@ const schema = Joi.object({
     country: Joi.string().required(),
     phone: Joi.number().required(),
     user:Joi.required(),
-    status: Joi.required()
+    status: Joi.number().required()
 });
 
 module.exports = schema;
