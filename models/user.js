@@ -23,18 +23,23 @@ const userSchema = new mongoose.Schema(
 
     apartment: {
       type: String,
+      default:""
     },
     city: {
       type: String,
+      default:""
     },
     zip: {
       type: String,
+      default:""
     },
     country: {
       type: String,
+      default:""
     },
     street: {
       type: String,
+      default:""
     },
     isAdmin: {
       type: Boolean,
