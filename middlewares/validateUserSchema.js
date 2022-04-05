@@ -8,7 +8,7 @@ module.exports = function() {
 
     return async function(req, res, next) {
         try {
-            const validated = await userValidation.validateAsync(req.body,{abortEarly:false})
+            const validated = await userValidation.validateAsync(req.body)
             req.body = validated
             next()
         } catch (err) {
