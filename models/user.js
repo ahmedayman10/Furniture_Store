@@ -1,60 +1,64 @@
-const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken');
+const mongoose = require("mongoose");
+const jwt = require("jsonwebtoken");
 
 const userSchema = new mongoose.Schema(
-    {
-      name: { 
-        type: String, 
-        required:true
-      },
-      email: { 
-        type: String,
-         required: true, 
-         unique: true 
-        },
-      password: { 
-        type: String, 
-        required: true 
-      },
-      phone: {
-        type:Number,
-         required: true
-        },
-      shippingAddress1: {
-        type: String,
+  {
+    name: {
+      type: String,
+      required: true,
     },
-    shippingAddress2: {
-        type: String,
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    phone: {
+      type: Number,
+      required: true,
+    },
+
+    apartment: {
+      type: String,
     },
     city: {
-        type: String,
- 
+      type: String,
     },
     zip: {
-        type: String,
-   
+      type: String,
     },
     country: {
-        type: String,
-       
+      type: String,
     },
-      isAdmin: {
-        type: Boolean,
-        default: false,
+    street: {
+      type: String,
+    },
+    isAdmin: {
+      type: Boolean,
+      default: false,
+    },
+    favouriteList: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product",
       },
-      favouriteList:[
-        {
-          type: mongoose.Schema.Types.ObjectId,
-          ref:'Product'
-        }]
-    },
-    { timestamps: true }
+    ],
+  },
+  { timestamps: true }
+);
+
+userSchema.methods.generateAuthToken = function () {
+  const token = jwt.sign(
+    { _id: this._id, name: this.name, isAdmin: this.isAdmin },
+    process.env.JWT_SEC,
+    { expiresIn: "10h" }
   );
+  return token;
+};
+const User = mongoose.model("User", userSchema);
 
-  userSchema.methods.generateAuthToken = function(){
-    const token = jwt.sign({_id:this._id, name:this.name,isAdmin:this.isAdmin},process.env.JWT_SEC,{expiresIn:"10h"});
-    return token
- }
-  const User = mongoose.model('User',userSchema);
+module.exports.User = User;
 
-  module.exports.User = User;
