@@ -22,10 +22,9 @@ router.get('/:id',verifyTokenAndAuthorization,async(req,res)=>{
 })
 
 router.delete("/:id",verifyTokenAndAuthorization,async(req, res,next)=>{
-  const {id}  = req.params;
-  console.log(id);
-  await User.findByIdAndRemove(id);
-  res.status(200).send('user deleted');
+ const {id}  = req.params;
+  const user = await User.findByIdAndRemove(id);
+  res.status(200).json({user:user});
 })
 
 router.patch("/:id", verifyTokenAndAuthorization,async (req, res, next) => {
