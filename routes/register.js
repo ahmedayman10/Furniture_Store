@@ -15,10 +15,15 @@ router.post("/", userValidations ,async (req, res, next) => {
         code: "VALIDATION-ERROR",
       }));
   let user = new User({
-     name: req.body.name,
+    name: req.body.name,
     email: req.body.email,
     password: req.body.password,
     phone: req.body.phone,
+    city:req.body.city,
+    apartment:req.body.apartment,
+    country:req.body.country,
+    zip:req.body.zip,
+    street:req.body.street,
     isAdmin: req.body.isAdmin,
   });
   const salt = await bcrypt.genSalt(10);
