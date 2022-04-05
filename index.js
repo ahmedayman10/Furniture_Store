@@ -3,7 +3,12 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin:'*',
+    optionsSuccessStatus:200
+}))
+
+
 
 const productsRouter = require('./routes/products');
 const registerRouter = require('./routes/register');
