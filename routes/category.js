@@ -12,12 +12,12 @@ const {
     verifyTokenAndAdmin,
   } = require("../middlewares/verifyToken");
 
-router.post('/',verifyTokenAndAdmin,multer.single("image"),async(req, res)=>{
-     const result = await cloudinary.uploader.upload(req.file.path); 
+router.post('/',verifyTokenAndAdmin,async(req, res)=>{
+     //const result = await cloudinary.uploader.upload(req.file.path); 
     try{
         let category = new Category({
         name: req.body.name,
-        image: result.url,
+       // image: result.url,
         icon:req.body.icon,
         color:req.body.color
     })
