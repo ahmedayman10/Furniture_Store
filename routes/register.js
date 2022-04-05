@@ -19,7 +19,6 @@ router.post("/", userValidations ,async (req, res, next) => {
     email: req.body.email,
     password: req.body.password,
     phone: req.body.phone,
-    address: req.body.address,
     isAdmin: req.body.isAdmin,
   });
   const salt = await bcrypt.genSalt(10);
