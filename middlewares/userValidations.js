@@ -5,11 +5,11 @@ const schema = Joi.object({
   email: Joi.string().email().required(),
   password: Joi.string().min(5).max(15).required(),
   phone: Joi.string().min(11).required(),
-  city: Joi.string().optional,
-  street:Joi.string().optional,
-  apartment:Joi.string().optional,
-  zip: Joi.string().optional,
-  country: Joi.string().optional,
+  city: Joi.string(),
+  street:Joi.string(),
+  apartment:Joi.string(),
+  zip: Joi.string(),
+  country: Joi.string(),
   isAdmin: Joi.boolean(),
 });
 
