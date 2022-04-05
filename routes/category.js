@@ -23,7 +23,7 @@ router.post('/',verifyTokenAndAdmin,multer.single("image"),async(req, res)=>{
     })
     category = await category.save();
     res.status(200).send(category);
-    // res.status(200).json({category:category});
+    // res.status(200).send(category);
     }catch(ex){
         res.send(ex);
     }
