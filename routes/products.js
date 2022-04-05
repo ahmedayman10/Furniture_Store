@@ -46,17 +46,35 @@ router.post('/favourite',async(req,res)=>{
 
 })
 
-router.get("/", async (req, res,next) => 
-{
-  let { page, limit } = req.query;
+router.get("/", async (req, res, next) => {
+  let { page, limit, categoryId } = req.query;
   const size = await Product.count().exec();
   const skip = (page || 1 - 1) * (limit || 10);
   const pages = Math.ceil(+size / +(limit || 10));
-  const products = await Product.find().populate('category').limit(limit).skip(skip).exec();
-
-  if (size == 0) return next(customeError({ status: 400, message: "Products not found" }))
-
-  return res.send(products)
+  try{
+    if (categoryId) {
+      const myCategory = categoryId.split(',');
+      const searchedProducts = await Product.find({ category: myCategory })
+        .populate("category")
+        .limit(limit)
+        .skip(skip)
+        .exec();
+      res.send(searchedProducts);
+    } else {
+      const products = await Product.find()
+        .populate("category")
+        .limit(limit)
+        .skip(skip)
+        .exec();
+      if (size == 0)
+        return next(customeError({ status: 400, message: "Products not found" }));
+      res.send(products);
+    }
+  
+  }catch(err){
+    res.status(404).send(err.message);
+  }
+  //return res.status(200).json({ success: true, products, pages, size });
 });
 
 
