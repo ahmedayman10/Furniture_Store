@@ -12,7 +12,7 @@ const {
 
 
 router.get('/',verifyTokenAndAdmin,async(req, res)=>{
-    const orders = await Order.find().populate('user','username').populate({
+    const orders = await Order.find().populate('user','name').populate({
         path:'orderItems',populate:{path:'product',populate:'category'}}).sort('dateOrdered');
     if(!orders)return res.status(500).json({succes: false});
     res.send(orders);
@@ -22,7 +22,7 @@ router.get('/',verifyTokenAndAdmin,async(req, res)=>{
 router.get('/:id',verifyTokenAndAdmin,async(req, res)=>{
     try{
     const order = await Order.findById(req.params.id)
-    .populate('user','username')
+    .populate('user','name')
     .populate({
         path:'orderItems',populate:{path:'product',populate:'category'}})
     
@@ -116,7 +116,7 @@ router.delete('/:id',verifyTokenAndAdmin,async(req,res)=>{
                 await order.orderItems.map(async orderItem=>{
                     await OrderItem.findByIdAndRemove(orderItem)
                 })
-                return res.status(200).json({success: true, message:'the order is deleted'});
+                return res.status(200).json({success: true, order: order , message:'the order is deleted'});
             }else{
                 return res.status(500).json({success: false, message:'the order is not exists'}); 
             }
