@@ -16,9 +16,13 @@ router.get("/", verifyTokenAndAdmin,async (req, res, next) => {
 });
 
 router.get('/:id',verifyTokenAndAuthorization,async(req,res)=>{
-  const {id} = req.params;
-  const user = await User.findOne({id});
-  res.status(200).send(user);
+  try{
+    const {id} = req.params;
+    const user = await User.findById(id);
+    res.status(200).send(user);
+  }catch(err){
+    res.status(400).send(err.message)
+  }
 })
 
 router.delete("/:id",verifyTokenAndAuthorization,async(req, res,next)=>{
