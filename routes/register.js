@@ -26,8 +26,8 @@ router.post("/", userValidations ,async (req, res, next) => {
     street:req.body.street,
     isAdmin: req.body.isAdmin,
   });
-//   const salt = await bcrypt.genSalt(10);
-//   user.password = await bcrypt.hash(user.password, salt);
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(user.password, salt);
 
     user = await user.save();
     res.status(200).send(user);
