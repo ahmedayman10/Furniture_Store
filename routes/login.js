@@ -5,15 +5,16 @@ const bcrypt = require('bcrypt');
 
 
 router.post('/',async(req,res,next)=>{
-    const user = await User.findOne({email: req.body.email});
-    if(!user)return res.status(404).send('wrong email or password');
+  const userEmail = await User.findOne({email: req.body.email});
+    if(!userEmail)return res.status(404).send('wrong email or password');
+    
+    let userPass = await User.findOne({password: req.body.password});
+    if(!userPass)return res.status(404).send('wrong email or password');
+    console.log(userPass);
+    
 
-    //const validatePass=await bcrypt.compare(req.body.password , user.password);
-    const validatePass = await User.findOne({password: req.body.password});
-    if(!validatePass)return res.status(400).send('wrong email or password');
-
-    const token = user.generateAuthToken();
-    res.status(200).json({token:token,user: user._id});
+    const token = userEmail.generateAuthToken();
+    res.status(200).json({token:token,userEmail: userEmail._id});
     
 });
 
