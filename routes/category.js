@@ -35,7 +35,7 @@ router.get('/',async (req, res, next)=>{
     res.send(category);
 });
 
-router.get('/:id',verifyTokenAndAdmin,async(req,res,next)=>{
+router.get('/:id',async(req,res,next)=>{
     // const {id} = req.params;
     // const product =await Product.findOne(req.params);
     try{
