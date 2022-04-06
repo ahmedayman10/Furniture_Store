@@ -33,7 +33,7 @@ router.get('/:id',verifyTokenAndAdmin,async(req, res)=>{
 });
 
 //post order
-router.post('/', orderValidation,async (req,res)=>{
+router.post('/',orderValidation,async (req,res)=>{
     
     const orderItemsIds = Promise.all(req.body.orderItems.map(async (orderItem) =>{
         let newOrderItem = new OrderItem({
