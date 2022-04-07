@@ -47,21 +47,13 @@ router.get('/:id',async(req,res,next)=>{
       
 });
 
-router.patch('/:id',verifyTokenAndAdmin,multer.single("image"),async(req, res)=>{
-    try{
-        const result = await cloudinary.uploader.upload(req.file.path);
-        const updatedCategory = await Category.findByIdAndUpdate(req.params.id,{
-        name: req.body.name,
-        image: result.url,
-        icon:req.body.icon,
-        color:req.body.color
-    });
-    await updatedCategory.save();
-    res.status(200).json({category:updatedCategory});
-    }catch(err){
-        res.send(err);
-    }
-})
+router.patch('/:id',verifyTokenAndAdmin,async(req, res)=>{
+    const updatedCategory = await Category.findByIdAndUpdate(req.params.id,{
+        $set: req.body
+    },{new: true});
+    if(!updatedCategory)return res.status(404).send('category doesnot exists');
+    res.status(200).json({category: updatedCategory});
+});
 
 router.delete('/:id',verifyTokenAndAdmin,async(req, res)=>{
     const deletedCategory = await Category.findByIdAndRemove(req.params.id);
