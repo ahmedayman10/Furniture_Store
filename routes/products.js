@@ -101,6 +101,12 @@ router.get(`/get/count`, async (req, res) => {
  res.status(200).json({success:true, productsCount:productList.length});
 });
 
+router.get("/get/featured/:count", async (req, res) => {
+  const { count } = req.params;
+  console.log(count);
+  const product = await Product.find({ isFeatured: true }).limit(count);
+  res.send(product);
+});
 
 
 
