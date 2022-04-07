@@ -1,0 +1,676 @@
+{
+	"info": {
+		"_postman_id": "3e8e3526-c91a-4973-b28f-b8ca0ab9740f",
+		"name": "Furniture_Store",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Get all products",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "add product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjNiNmIxNmE5OTMxYzIwYmViMjdlMDEiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NDg4MTI4MzAsImV4cCI6MTY0ODg0ODgzMH0.Fp23QgoztYLQHdw5sHV8WE3uZEjy0LA6e_DXyChpriU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "dummy",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "desc",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "623f20698988f9f98ecf58ae",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "countInStock",
+									"value": "50",
+									"type": "text"
+								},
+								{
+									"key": "isFeatured",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/A.Ayman/Desktop/2.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://furniture-market.herokuapp.com/products",
+							"protocol": "https",
+							"host": [
+								"furniture-market",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get single product",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjNiNmIxNmE5OTMxYzIwYmViMjdlMDEiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NDg4MTI4MzAsImV4cCI6MTY0ODg0ODgzMH0.Fp23QgoztYLQHdw5sHV8WE3uZEjy0LA6e_DXyChpriU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://furniture-market.herokuapp.com/products/6246e550313efaa23c1d043b",
+							"protocol": "https",
+							"host": [
+								"furniture-market",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"products",
+								"6246e550313efaa23c1d043b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete product",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjNiNmIxNmE5OTMxYzIwYmViMjdlMDEiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NDg4MTI4MzAsImV4cCI6MTY0ODg0ODgzMH0.Fp23QgoztYLQHdw5sHV8WE3uZEjy0LA6e_DXyChpriU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://furniture-market.herokuapp.com/products/6246e550313efaa23c1d043b",
+							"protocol": "https",
+							"host": [
+								"furniture-market",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"products",
+								"6246e550313efaa23c1d043b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add to favourite",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjNiNmIxNmE5OTMxYzIwYmViMjdlMDEiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NDg4MTI4MzAsImV4cCI6MTY0ODg0ODgzMH0.Fp23QgoztYLQHdw5sHV8WE3uZEjy0LA6e_DXyChpriU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productId\":\"623f20eb8988f9f98ecf58b3\",\r\n    \"userId\":\"6244b1d5140412d43237c166\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://furniture-market.herokuapp.com/products/favourite",
+							"protocol": "https",
+							"host": [
+								"furniture-market",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"products",
+								"favourite"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "get all users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjNiNmIxNmE5OTMxYzIwYmViMjdlMDEiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NDg4MTI4MzAsImV4cCI6MTY0ODg0ODgzMH0.Fp23QgoztYLQHdw5sHV8WE3uZEjy0LA6e_DXyChpriU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://furniture-market.herokuapp.com/users",
+							"protocol": "https",
+							"host": [
+								"furniture-market",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get single user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjNiNmIxNmE5OTMxYzIwYmViMjdlMDEiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NDg4MTI4MzAsImV4cCI6MTY0ODg0ODgzMH0.Fp23QgoztYLQHdw5sHV8WE3uZEjy0LA6e_DXyChpriU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://furniture-market.herokuapp.com/users/6244b1d5140412d43237c166",
+							"protocol": "https",
+							"host": [
+								"furniture-market",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"users",
+								"6244b1d5140412d43237c166"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user details",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjNiNmIxNmE5OTMxYzIwYmViMjdlMDEiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NDg4MTI4MzAsImV4cCI6MTY0ODg0ODgzMH0.Fp23QgoztYLQHdw5sHV8WE3uZEjy0LA6e_DXyChpriU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"salma2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://furniture-market.herokuapp.com/users/6244b1d5140412d43237c166",
+							"protocol": "https",
+							"host": [
+								"furniture-market",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"users",
+								"6244b1d5140412d43237c166"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjNiNmIxNmE5OTMxYzIwYmViMjdlMDEiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NDg4MTI4MzAsImV4cCI6MTY0ODg0ODgzMH0.Fp23QgoztYLQHdw5sHV8WE3uZEjy0LA6e_DXyChpriU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://furniture-market.herokuapp.com/users/6244b1d5140412d43237c166",
+							"protocol": "https",
+							"host": [
+								"furniture-market",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"users",
+								"6244b1d5140412d43237c166"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"ahmedayman44477@gmail.com\",\r\n    \"password\":\"44477\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://furniture-market.herokuapp.com/login",
+							"protocol": "https",
+							"host": [
+								"furniture-market",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"yasser\",\r\n    \"email\":\"yasserHassan@gmail.com\",\r\n    \"password\":\"44477\",\r\n    \"phone\":\"01055588941\",\r\n    \"address\":\"nemra6\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://furniture-market.herokuapp.com/register",
+							"protocol": "https",
+							"host": [
+								"furniture-market",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "get all categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjNiNmIxNmE5OTMxYzIwYmViMjdlMDEiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NDg4MTQ3MjcsImV4cCI6MTY0ODg1MDcyN30.3NvItWO9mA0P1lss4_ZYmDoMK6_ZeN16pTlNUwI6Ccc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://furniture-market.herokuapp.com/category",
+							"protocol": "https",
+							"host": [
+								"furniture-market",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add category",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjNiNmIxNmE5OTMxYzIwYmViMjdlMDEiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NDg4MTI4MzAsImV4cCI6MTY0ODg0ODgzMH0.Fp23QgoztYLQHdw5sHV8WE3uZEjy0LA6e_DXyChpriU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "categoryName",
+									"value": "dummy",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/A.Ayman/Desktop/3.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://furniture-market.herokuapp.com/category",
+							"protocol": "https",
+							"host": [
+								"furniture-market",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get single category",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjNiNmIxNmE5OTMxYzIwYmViMjdlMDEiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NDg4MTI4MzAsImV4cCI6MTY0ODg0ODgzMH0.Fp23QgoztYLQHdw5sHV8WE3uZEjy0LA6e_DXyChpriU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://furniture-market.herokuapp.com/category/62408efbc2bd1f212bf5b6cb",
+							"protocol": "https",
+							"host": [
+								"furniture-market",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"category",
+								"62408efbc2bd1f212bf5b6cb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update category",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjNiNmIxNmE5OTMxYzIwYmViMjdlMDEiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NDg4MTI4MzAsImV4cCI6MTY0ODg0ODgzMH0.Fp23QgoztYLQHdw5sHV8WE3uZEjy0LA6e_DXyChpriU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryName\":\"chairs\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://furniture-market.herokuapp.com/category/62408efbc2bd1f212bf5b6cb",
+							"protocol": "https",
+							"host": [
+								"furniture-market",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"category",
+								"62408efbc2bd1f212bf5b6cb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete category",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjNiNmIxNmE5OTMxYzIwYmViMjdlMDEiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NDg4MTI4MzAsImV4cCI6MTY0ODg0ODgzMH0.Fp23QgoztYLQHdw5sHV8WE3uZEjy0LA6e_DXyChpriU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://furniture-market.herokuapp.com/category/6246ec2f313efaa23c1d0459",
+							"protocol": "https",
+							"host": [
+								"furniture-market",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"category",
+								"6246ec2f313efaa23c1d0459"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "add order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"orderItems\":[\r\n        {\r\n            \"quantity\":2,\r\n            \"product\":\"6240950608e9a48f73d9d597\"\r\n        },\r\n        {\r\n            \"quantity\":5,\r\n            \"product\":\"6240953e08e9a48f73d9d59a\"\r\n        }\r\n    ],\r\n    \"shippingAddress\":\"alex\",\r\n    \"phone\":\"01033355215\",\r\n    \"status\":\"shippded\",\r\n    \"user\":\"623b5b98ea5f21dd4e2e3b7b\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://furniture-market.herokuapp.com/orders",
+							"protocol": "https",
+							"host": [
+								"furniture-market",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all orders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjNiNmIxNmE5OTMxYzIwYmViMjdlMDEiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NDg4MTI4MzAsImV4cCI6MTY0ODg0ODgzMH0.Fp23QgoztYLQHdw5sHV8WE3uZEjy0LA6e_DXyChpriU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://furniture-market.herokuapp.com/orders",
+							"protocol": "https",
+							"host": [
+								"furniture-market",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get single order",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjNiNmIxNmE5OTMxYzIwYmViMjdlMDEiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NDg4MTI4MzAsImV4cCI6MTY0ODg0ODgzMH0.Fp23QgoztYLQHdw5sHV8WE3uZEjy0LA6e_DXyChpriU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://furniture-market.herokuapp.com/orders/6246edce313efaa23c1d0464",
+							"protocol": "https",
+							"host": [
+								"furniture-market",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"orders",
+								"6246edce313efaa23c1d0464"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update order",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjNiNmIxNmE5OTMxYzIwYmViMjdlMDEiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NDg4MTI4MzAsImV4cCI6MTY0ODg0ODgzMH0.Fp23QgoztYLQHdw5sHV8WE3uZEjy0LA6e_DXyChpriU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phone\":\"01000000020\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://furniture-market.herokuapp.com/orders/6246edce313efaa23c1d0464",
+							"protocol": "https",
+							"host": [
+								"furniture-market",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"orders",
+								"6246edce313efaa23c1d0464"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjNiNmIxNmE5OTMxYzIwYmViMjdlMDEiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NDg4MTI4MzAsImV4cCI6MTY0ODg0ODgzMH0.Fp23QgoztYLQHdw5sHV8WE3uZEjy0LA6e_DXyChpriU",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete order",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjNiNmIxNmE5OTMxYzIwYmViMjdlMDEiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NDg4MTI4MzAsImV4cCI6MTY0ODg0ODgzMH0.Fp23QgoztYLQHdw5sHV8WE3uZEjy0LA6e_DXyChpriU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://furniture-market.herokuapp.com/orders/6246edce313efaa23c1d0464",
+							"protocol": "https",
+							"host": [
+								"furniture-market",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"orders",
+								"6246edce313efaa23c1d0464"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
