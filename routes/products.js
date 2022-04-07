@@ -103,23 +103,30 @@ router.get(`/get/count`, async (req, res) => {
 
 
 
-router.patch("/:id", multer.single("image"), async (req, res) => {
+
+router.patch("/:id", verifyTokenAndAdmin, multer.single("image"), async (req, res) => {
   const category = await Category.findById(req.body.category);
   if (!category) return res.status(400).send("invalid category");
   const result = await cloudinary.uploader.upload(req.file.path);
-  const updatedProduct = await Product.findByIdAndUpdate(req.params.id, {
-    name: req.body.name,
-    description: req.body.description,
-    category: category,
-    price: req.body.price,
-    countInStock: req.body.countInStock,
-    isFeatured: req.body.isFeatured,
-    image: result.url,
-    brand: req.body.brand,
-  });
-  await updatedProduct.save();
-  res.status(200).json({product:updatedProduct});
+  try{
+      const updatedProduct = await Product.findByIdAndUpdate(req.params.id, {
+      name: req.body.name,
+      description: req.body.description,
+      category: category,
+      price: req.body.price,
+      countInStock: req.body.countInStock,
+      isFeatured: req.body.isFeatured,
+      image: result.url,
+      brand: req.body.brand,
+    });
+    await updatedProduct.save();
+    res.status(200).json({product:updatedProduct});
+  }catch(err){
+    res.send(err);
+  }
 });
+
+
 
 router.delete("/:id", verifyTokenAndAdmin, async (req, res, next) => {
   const { id } = req.params;
