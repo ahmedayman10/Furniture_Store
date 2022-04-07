@@ -87,6 +87,11 @@ router.get('/get/totalsales',verifyTokenAndAdmin,async(req, res)=>{
     res.status(200).json({success: true , totalsales:totalSales.pop().totalsales});
 });
 
+router.get(`/get/count`, async (req, res) => {
+    let orderCount = await Order.find();
+    res.status(200).json({success:true, orderCount:orderCount.length});
+  });
+
 //get user's orders
 router.get('/get/userorder/:userId',async(req, res)=>{
     const userOrdersList = await Order.find({user: req.params.userId}).populate({
