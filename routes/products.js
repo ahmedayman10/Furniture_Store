@@ -102,18 +102,16 @@ router.get(`/get/count`, async (req, res) => {
 });
 
 
+
 router.patch("/:id", verifyTokenAndAdmin, async (req, res, next) => {
-  const { id } = req.params;
   try {
-    const updatedProduct = await Product.findByIdAndUpdate(
-      id,
+    const updatedProduct = await Product.findByIdAndUpdate(req.params.id,
       {
         $set: req.body,
       },
       { new: true }
     );
-
-    res.status(200).send(updatedProduct);
+    res.status(200).json({ product: updatedProduct });
   } catch (err) {
     res.status(404).send("product is not exists");
   }
