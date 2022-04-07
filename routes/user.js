@@ -46,4 +46,9 @@ router.patch("/:id", verifyTokenAndAuthorization, async (req, res, next) => {
   res.status(200).send(updatedUser);
 });
 
+router.get(`/get/count`, async (req, res) => {
+  let userCount = await User.find();
+  res.status(200).json({success:true, userCount:userCount.length});
+});
+
 module.exports = router;
