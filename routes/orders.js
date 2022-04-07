@@ -84,7 +84,7 @@ router.get('/get/totalsales',verifyTokenAndAdmin,async(req, res)=>{
     ])
     
     if(!totalSales)return res.status(400).send('the order sales cannot be generated');
-    res.status(200).send(totalSales.pop().totalsales);
+    res.status(200).json({success: true , totalsales:totalSales.pop().totalsales});
 });
 
 //get user's orders
