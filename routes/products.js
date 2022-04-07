@@ -113,7 +113,7 @@ router.get("/get/featured/:count", async (req, res) => {
 router.patch("/:id", verifyTokenAndAdmin, multer.single("image"), async (req, res) => {
   const category = await Category.findById(req.body.category);
   if (!category) return res.status(400).send("invalid category");
-  //const result = await cloudinary.uploader.upload(req.file.path);
+  const result = await cloudinary.uploader.upload(req.file.path);
   try{
       const updatedProduct = await Product.findByIdAndUpdate(req.params.id, {
       name: req.body.name,
@@ -122,7 +122,7 @@ router.patch("/:id", verifyTokenAndAdmin, multer.single("image"), async (req, re
       price: req.body.price,
       countInStock: req.body.countInStock,
       isFeatured: req.body.isFeatured,
-      //image: result.url,
+      image: result.url,
       brand: req.body.brand,
     });
     await updatedProduct.save();
