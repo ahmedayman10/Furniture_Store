@@ -98,7 +98,7 @@ router.get('/category/:id', async(req, res)=>{
 //get product count
 router.get(`/get/count`, async (req, res) => {
   let productList = await Product.find();
-  res.status(200).send(productList.length);
+ res.status(200).json({success:true, productsCount:productList.length});
 });
 
 
