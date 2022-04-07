@@ -103,18 +103,22 @@ router.get(`/get/count`, async (req, res) => {
 
 
 
-router.patch("/:id", verifyTokenAndAdmin, async (req, res, next) => {
-  try {
-    const updatedProduct = await Product.findByIdAndUpdate(req.params.id,
-      {
-        $set: req.body,
-      },
-      { new: true }
-    );
-    res.status(200).json({ product: updatedProduct });
-  } catch (err) {
-    res.status(404).send("product is not exists");
-  }
+router.patch("/:id", multer.single("image"), async (req, res) => {
+  const category = await Category.findById(req.body.category);
+  if (!category) return res.status(400).send("invalid category");
+  const result = await cloudinary.uploader.upload(req.file.path);
+  const updatedProduct = await Product.findByIdAndUpdate(req.params.id, {
+    name: req.body.name,
+    description: req.body.description,
+    category: category,
+    price: req.body.price,
+    countInStock: req.body.countInStock,
+    isFeatured: req.body.isFeatured,
+    image: result.url,
+    brand: req.body.brand,
+  });
+  await updatedProduct.save();
+  res.status(200).json({product:updatedProduct});
 });
 
 router.delete("/:id", verifyTokenAndAdmin, async (req, res, next) => {
