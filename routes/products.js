@@ -124,7 +124,7 @@ router.get("/", async (req, res, next) => {
   //return res.status(200).json({ success: true, products, pages, size });
 });
 
-router.get("/:id", verifyTokenAndAdmin, async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   try {
     const product = await Product.findById(req.params.id).populate("category");
     res.status(200).send(product);
