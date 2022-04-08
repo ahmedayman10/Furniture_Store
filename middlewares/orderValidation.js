@@ -6,7 +6,7 @@ const schema = Joi.object({
     city: Joi.string().required(),
     zip: Joi.string().required(),
     country: Joi.string().required(),
-    phone: Joi.number().required(),
+    phone: Joi.string().required(),
     user:Joi.required(),
     status: Joi.number().required()
 });
