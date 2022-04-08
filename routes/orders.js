@@ -11,15 +11,14 @@ const {
   } = require("../middlewares/verifyToken");
 
 
-router.get('/',verifyTokenAndAdmin,async(req, res)=>{
+router.get('/',verifyTokenAndAuthorization,async(req, res)=>{
     const orders = await Order.find().populate('user','name').populate({
         path:'orderItems',populate:{path:'product',populate:'category'}}).sort('dateOrdered');
     if(!orders)return res.status(500).json({succes: false});
     res.send(orders);
 });
 
-//get all orders
-router.get('/:id',verifyTokenAndAdmin,async(req, res)=>{
+router.get('/:id',verifyTokenAndAuthorization,async(req, res)=>{
     try{
     const order = await Order.findById(req.params.id)
     .populate('user','name')
